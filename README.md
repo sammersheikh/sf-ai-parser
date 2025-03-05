@@ -1,6 +1,6 @@
 # Address Parser Chrome Extension
 
-This extension parses address data from the clipboard and formats it with structured fields using a local LLM powered by LM Studio.
+This extension copies Shippng address from Salesforce Sales order and parses address data from the clipboard and formats it with structured fields using a local LLM powered by LM Studio.
 
 ## Features
 
