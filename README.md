@@ -1,9 +1,10 @@
 # Address Parser Chrome Extension
 
-This extension copies Shippng address from Salesforce Sales order and parses address data from the clipboard and formats it with structured fields using a local LLM powered by LM Studio.
+This extension parses address data from Salesforce sales order pages or clipboard JSON and formats it with structured fields using a local LLM powered by LM Studio.
 
 ## Features
 
+- Directly extracts shipping addresses from Salesforce pages
 - Reads JSON address data from clipboard
 - Uses a local LLM (Language Model) hosted by LM Studio for intelligent address parsing
 - Falls back to regex pattern matching if the LLM is unavailable
@@ -26,6 +27,23 @@ This extension copies Shippng address from Salesforce Sales order and parses add
    - Start the local server (usually at http://127.0.0.1:1234)
 
 ## How to Use
+
+### Method 1: Extract Directly from Salesforce
+
+1. **Make sure your local LLM is running** in LM Studio at http://127.0.0.1:1234
+
+2. **Navigate to a Salesforce sales order page** containing shipping information
+
+3. **Click the extension icon** in your Chrome toolbar to open the popup
+
+4. **Click "Extract Address from Current Page"** button
+   - The extension will find and extract the shipping address from the page
+   - It will then parse the address using your local LLM
+   - The structured result will be copied to your clipboard
+
+5. **Paste the structured data** wherever you need it
+
+### Method 2: Parse from Clipboard JSON
 
 1. **Make sure your local LLM is running** in LM Studio at http://127.0.0.1:1234
 
@@ -57,6 +75,15 @@ This extension copies Shippng address from Salesforce Sales order and parses add
 
 6. You can now **paste the structured address** wherever you need it
 
+## Salesforce Compatibility
+
+The extension is specifically designed to work with Salesforce sales order pages:
+
+- It automatically finds the "Shipping Address" field in the page
+- It handles multi-line addresses (including Attn: lines, street addresses, and city/state/zip)
+- It correctly extracts addresses even when they span multiple lines or have inconsistent formatting
+- Works with standard Salesforce layout or custom implementations
+
 ## Installation
 
 ### From Chrome Web Store
@@ -75,6 +102,7 @@ This extension requires the following permissions:
 - **Clipboard Read**: To read address data from your clipboard
 - **Clipboard Write**: To write parsed data back to your clipboard
 - **Storage**: To save extension preferences
+- **ActiveTab**: To access the current tab for extracting address data
 - **Host Permissions** for `http://127.0.0.1:1234/*`: To connect to your local LLM
 
 ## Fallback Mode
